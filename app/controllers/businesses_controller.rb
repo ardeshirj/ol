@@ -1,6 +1,7 @@
 # Businesses Controller
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   # GET /businesses
   # GET /businesses.json
@@ -63,5 +64,9 @@ class BusinessesController < ApplicationController
       :uuid, :name, :address, :address2, :city, :state, :zip, :country, :phone,
       :website, :created_at
     )
+  end
+
+  def record_not_found(error)
+    render json: error.message, status: 404
   end
 end
