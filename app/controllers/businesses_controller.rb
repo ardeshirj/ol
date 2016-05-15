@@ -11,7 +11,7 @@ class BusinessesController < ApplicationController
     @businesses = Business.all
     @businesses = Business.page(page_number).per(page_size)
 
-    render json: @businesses
+    render json: @businesses, meta: pagination_dict(@businesses)
   end
 
   # GET /businesses/1
