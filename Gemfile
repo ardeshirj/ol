@@ -6,6 +6,7 @@ gem 'sqlite3'
 
 group :test, :development do
   gem 'spring'
+  gem 'activerecord-import', '~> 0.13.0'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
 end
 
