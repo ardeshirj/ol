@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
 gem 'rails-api'
+gem 'active_model_serializers', '~> 0.10.0.rc5'
 gem 'sqlite3'
 
 group :test, :development do
