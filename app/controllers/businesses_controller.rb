@@ -1,10 +1,15 @@
+# Businesses Controller
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :update, :destroy]
 
   # GET /businesses
   # GET /businesses.json
   def index
+    page_number = params[:page]
+    page_size = params[:per_page] || 50
+
     @businesses = Business.all
+    @businesses = Business.page(page_number).per(page_size)
 
     render json: @businesses
   end
@@ -49,11 +54,14 @@ class BusinessesController < ApplicationController
 
   private
 
-    def set_business
-      @business = Business.find(params[:id])
-    end
+  def set_business
+    @business = Business.find(params[:id])
+  end
 
-    def business_params
-      params.require(:business).permit(:uuid, :name, :address, :address2, :city, :state, :zip, :country, :phone, :website, :created_at)
-    end
+  def business_params
+    params.require(:business).permit(
+      :uuid, :name, :address, :address2, :city, :state, :zip, :country, :phone,
+      :website, :created_at
+    )
+  end
 end
