@@ -13,13 +13,21 @@ module V1
       @businesses = Business.all
       @businesses = Business.page(page_number).per(page_size)
 
-      render json: @businesses, meta: pagination_dict(@businesses)
+      respond_to do |format|
+        format.ol_json do
+          render json: @businesses, meta: pagination_dict(@businesses)
+        end
+      end
     end
 
     # GET /businesses/1
     # GET /businesses/1.json
     def show
-      render json: @business
+      respond_to do |format|
+        format.ol_json do
+          render json: @business
+        end
+      end
     end
 
     # POST /businesses

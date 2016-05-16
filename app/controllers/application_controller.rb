@@ -1,5 +1,7 @@
 # Application Controller
 class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
+
   def pagination_dict(object)
     {
       current_page: object.current_page,

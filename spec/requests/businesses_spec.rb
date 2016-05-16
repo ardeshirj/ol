@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Businesses', type: :request do
   describe 'GET /businesses' do
     it 'Should get first 50 businesses by default' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses', {}, headers
 
       json_response = JSON.parse(response.body)
@@ -13,7 +13,7 @@ RSpec.describe 'Businesses', type: :request do
     end
 
     it 'Should return correct paginated metadata' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses', {}, headers
 
       json_response = JSON.parse(response.body)
@@ -27,7 +27,7 @@ RSpec.describe 'Businesses', type: :request do
     end
 
     it 'Should paginate all the businesses using the per_page parameter' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses', { per_page: 20 }, headers
 
       json_response = JSON.parse(response.body)
@@ -37,7 +37,7 @@ RSpec.describe 'Businesses', type: :request do
     end
 
     it 'Should get to the paginated page using the page parameter' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses', { page: 2 }, headers
 
       json_response = JSON.parse(response.body)
@@ -47,8 +47,7 @@ RSpec.describe 'Businesses', type: :request do
     end
 
     it 'Should paginate using both per_page & page parameters' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
-
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses', { per_page: 20, page: 2 }, headers
 
       json_response = JSON.parse(response.body)
@@ -59,7 +58,7 @@ RSpec.describe 'Businesses', type: :request do
     end
 
     it 'Should get different metadata with per_page & page parameters' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses', { per_page: 20, page: 2 }, headers
 
       json_response = JSON.parse(response.body)
@@ -75,7 +74,7 @@ RSpec.describe 'Businesses', type: :request do
 
   describe 'GET /businesses/:id' do
     it 'Should find & show the businesses that matches the id' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses/1', {}, headers
 
       json_response = JSON.parse(response.body)
@@ -85,7 +84,7 @@ RSpec.describe 'Businesses', type: :request do
     end
 
     it 'Should return 404 error where business does not exist' do
-      headers = { HTTP_ACCEPT: 'application/json; version=1' }
+      headers = { HTTP_ACCEPT: 'application/vnd.ol+json; version=1' }
       get '/businesses/55000', {}, headers
 
       expect(response.body).to include(
