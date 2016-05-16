@@ -5,7 +5,9 @@ Simple Rails API app for the interview project at OwnLocal. The `data.csv` has b
 
 This rails-api app uses `Active Model Serializers (AMS)` & `Kaminari` to serialize & paginate the businesses data in JSON format. There are different kind of `adapters` that you can use with `AMS`. For this project the adapter is set to `JSON` since it has the closet format to the provided example:
 
-```json
+```shell
+curl -H "accept: application/vnd.ol+json; version=1" http://localhost:3000/businesses/1
+
 {
   "businesses": [{
     "id": 1,
