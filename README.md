@@ -28,7 +28,7 @@ rails s
 ```
 
 ## Test
-The tests has been written in `rspec` and you can find it at `spec/requests/businesses_spec.rb`.
+The tests has been written in `rspec` and you can find the request tests at `spec/requests/businesses_spec.rb`.
 ```shell
 # Setup test db
 rake db:setup test
@@ -38,9 +38,11 @@ rspec spec/
 ```
 
 ## Routes
-The routes that provided by this api. Please note the JSON example are not complete, and it is just used for demonstration purposes
+The routes that provided by this api.
 
-- GET /businesses
+Please note the JSON example are not complete, and it is just used for demonstration purposes
+
+### GET /businesses
 
 By default this route will provide you the first 50 business objects including the pagination `meta` data:
 
@@ -60,13 +62,15 @@ By default this route will provide you the first 50 business objects including t
   }
 }
 ```
-- GET /businesses?page=2&per_page=20
+### GET /businesses?page=2&per_page=20
 
 You can also customize the `page` and `per_page` in query parameters.
+
 `page`: the page number
+
 `per_page`: the number of business(es) items you want to have in a page
 
-- GET /businesses/:id
+### GET /businesses/:id
 
 This route will return an individual business item.
 ```json
