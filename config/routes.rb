@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  resources :businesses, only: [:index, :show]
+
+  scope module: :v1, constraints: ApiConstraint.new(version: 1) do
+    resources :businesses, only: [:index, :show]
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
