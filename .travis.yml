@@ -1,0 +1,11 @@
+language: ruby
+
+rvm:
+  - 2.2.4
+
+env:
+  - DB=sqlite
+
+script:
+  - bundle exec rake db:setup test
+  - bundle exec rspec spec/
