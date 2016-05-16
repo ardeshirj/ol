@@ -1,23 +1,19 @@
 # OL - OwnLocal
+[![Build Status](https://travis-ci.org/ardeshirj/ol.svg?branch=master)](https://travis-ci.org/ardeshirj/ol)
+
 Simple Rails API app for the interview project at OwnLocal. The `data.csv` has been provided by OwnLocal.
 
-This rails-api app uses `Active Model Serializers (AMS)` & `Kaminari` to paginate the businesses data in JSON format.
-
-The `AMS` gem is helping us to serialize the businesses data. There are different kind of `adapters` that you can use with `AMS`. For this project the adapter is set to `JSON` since it has the closet format to the provided example:
+This rails-api app uses `Active Model Serializers (AMS)` & `Kaminari` to serialize & paginate the businesses data in JSON format. There are different kind of `adapters` that you can use with `AMS`. For this project the adapter is set to `JSON` since it has the closet format to the provided example:
 
 ```json
 {
   "businesses": [{
     "id": 1,
     "name": "...",
-    ...
-  }, ...],
-  ...
+  }, ],
 }
 ```
-You set your different json adapters at `config/initializers/ams.rb`. For example you can change it to `json_api` which provide `pagination links`.
-
-rails-api suggest to use `json_api` and you can read more about it (here)[http://jsonapi.org/]
+You set your different json adapters at `config/initializers/ams.rb`. For example you can change it to `json_api` which provide `pagination links` as well as metadata. rails-api suggest to use `json_api`, and you can read more about it (here)[http://jsonapi.org/]
 
 ## Setup
 ```shell
@@ -31,7 +27,19 @@ rake db:setup
 rails s
 ```
 
+## Test
+The majority of the tests has been written in `rspec` and you can find it at `spec/requests/businesses_spec.rb`.
+```shell
+# Setup test db
+rake db:setup test
+
+# Run all specs
+rspec spec/
+```
+
 ## Routes
+The routes that provided by this api. Please note the JSON example are not complete, and it is just used for demonstration purposes
+
 - GET /businesses
 By default this route will provide you the first 50 business objects including the pagination `meta` data:
 
@@ -41,8 +49,7 @@ By default this route will provide you the first 50 business objects including t
     "id":0,
     "uuid":"123",
     "name":"xyz",
-    ...
-  }, ...],
+  }, ],
   "meta":{
     "current_page":1,
     "next_page":2,
@@ -65,7 +72,6 @@ This route will return an individual business item.
     "id":0,
     "uuid":"123",
     "name":"xyz",
-    ...
   }
 }
 ```
